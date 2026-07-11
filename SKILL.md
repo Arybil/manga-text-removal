@@ -5,6 +5,8 @@ description: "Strip English/Japanese text (speech bubbles, narration boxes, capt
 
 # Manga Text Removal Pipeline
 
+🌐 **Live web panel:** https://komikaku.duckdns.org/clean
+
 Removes ALL text from manga pages (bubbles, narration boxes, info/caption bars,
 vertical text) leaving clean art for re-lettering. Three engines, all inpaint via
 LaMa (lama_cleaner, HDStrategy.CROP).

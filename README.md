@@ -1,5 +1,8 @@
 # manga-text-removal
 
+🌐 **Live web panel:** https://komikaku.duckdns.org/clean
+(upload a manga page, pick an engine, download the cleaned art — `ctd-lama` is the default)
+
 Strip **all** text from manga panels (speech bubbles, narration boxes, caption/info
 bars, vertical text) for re-lettering. Three interchangeable engines, all inpaint
 via [LaMa](https://github.com/Sanster/lama-cleaner):
