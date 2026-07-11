@@ -10,3 +10,4 @@ venv/
 output/
 tmp/
 .DS_Store
+web/cache/

@@ -41,9 +41,34 @@ The scripts read the venv locations from env vars (`PCLEANER_VENV`, `IMGTOOLS_VE
 
 ## Web panel
 
-A FastAPI endpoint (`POST /api/clean`) that accepts an upload + `engine`/`model`/
-`dilate`/`jpn` form fields, runs the matching script, and returns JSON. See `SKILL.md`
-for the integration snippet (use `Form(...)` + `asyncio.create_subprocess_exec`).
+The repo includes a ready-to-run FastAPI web app in `web/` — a standalone
+**clean-manga tool** (no reader/manhwa/manhua features). Upload a page, pick an
+engine, see before/after, download the cleaned art. `ctd-lama` is the default.
+
+```
+web/
+├── app.py              # FastAPI: serves / + /clean, POST /api/clean, GET /api/clean/file
+└── static/
+    ├── clean.html      # upload form + engine/model/dilate select + before/after preview
+    ├── clean.js        # upload -> /api/clean -> render + download
+    ├── shared.js       # tiny esc() helper
+    └── style.css       # clean-panel theme (reader CSS stripped)
+```
+
+Run it:
+```bash
+pip install fastapi uvicorn python-multipart   # web venv
+cd web
+python3 app.py        # serves on http://0.0.0.0:8099
+# open /  (redirects to the clean panel)
+```
+`app.py` shells out to the CLI scripts via `asyncio.create_subprocess_exec`, so the
+two venvs from "Quick start" must exist (or set the `*_PY` / `*_SCRIPT` paths at the
+top of `app.py`). The `/` and `/clean` routes both serve `clean.html`; all reader
+routes (library/history/manga/read + scraper APIs) were removed.
+
+For the integration snippet see `SKILL.md` (use `Form(...)` for all params +
+`asyncio.create_subprocess_exec` + read full stdout for robust JSON capture).
 
 ## Verify a result
 

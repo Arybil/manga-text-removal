@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clean Manga Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="wrap" id="clean">
+  <h1 class="page-title">Clean Panel Manga</h1>
+  <p class="sub">Hapus teks (EN) dari panel biar bisa di-reletter manual. LaMa inpaint, CPU.</p>
+
+  <div class="clean-grid">
+    <section class="card upcard">
+      <label class="field">
+        <span>Pilih gambar panel</span>
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
+      </label>
+
+      <label class="field">
+        <span>Model inpaint</span>
+        <select id="model">
+          <option value="lama">LaMa (default, screentone halus)</option>
+          <option value="manga">Manga (training khusus manga)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Engine</span>
+        <select id="engine">
+          <option value="ctd-lama" selected>CTD-LaMa (AI detect semua teks: bubble+box+vertikal, paling bersih)</option>
+          <option value="panelcleaner">PanelCleaner (bubbles aja, zero artifact)</option>
+          <option value="lama">LaMa OCR (teks hilang, ada dikit artifact)</option>
+        </select>
+      </label>
+
+      <label class="field row" id="jpnRow">
+        <span>Hapus juga SFX Jepang (kana)</span>
+        <input type="checkbox" id="jpn">
+      </label>
+
+      <label class="field">
+        <span>Dilate <b id="dval">10</b></span>
+        <input type="range" id="dilate" min="4" max="24" value="10">
+      </label>
+
+      <button id="go" class="btn-primary">Bersihkan ✨</button>
+      <div id="status" class="status"></div>
+      <a id="dl" class="btn-primary dl" download style="display:none" href="#">⬇ Download Hasil</a>
+    </section>
+
+    <section class="card preview">
+      <div class="pv"><h3>Original</h3><img id="pvSrc" alt="original"></div>
+      <div class="pv"><h3>Clean</h3><img id="pvDst" alt="clean"></div>
+    </section>
+  </div>
+</main>
+<script src="/static/shared.js"></script>
+<script src="/static/clean.js"></script>
+</body>
+</html>
