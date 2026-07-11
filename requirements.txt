@@ -1,0 +1,15 @@
+# Runtime deps (imgtools venv)
+lama-cleaner
+opencv-python-headless
+pytesseract
+pillow
+numpy
+
+# Text-detection deps (pcleaner-venv)
+pcleaner==2.11.11
+transformers<5   # manga_ocr import breaks on transformers 5.x
+
+# Web panel (manga-web venv)
+fastapi
+uvicorn
+python-multipart
